@@ -18,10 +18,18 @@ function addBookToLibrary(obj) {
 function createCards(arr) {
   for (let i = 0; i < arr.length; i++) {
     const card = document.createElement("div");
+    card.classList.add("cards");
     let content = `Title:${arr[i].title} Author:${arr[i].author} Pages:${arr[i].pages} Read:${arr[i].read}`;
     card.innerText = content;
     main.appendChild(card);
   }
+}
+
+function deleteCards() {
+  const cards = document.querySelectorAll(".cards");
+  cards.forEach((card) => {
+    card.remove();
+  });
 }
 
 myForm.addEventListener("submit", (e) => {
@@ -33,9 +41,13 @@ myForm.addEventListener("submit", (e) => {
     formData.get("pages"),
     formData.get("read")
   );
-  addBookToLibrary(book);
+  sessionStorage.setItem("book", JSON.stringify(book));
+  addBookToLibrary(JSON.parse(sessionStorage.getItem("book")));
+  sessionStorage.setItem("myLibrary", JSON.stringify(myLibrary));
   console.table(myLibrary);
+  deleteCards();
+  createCards(JSON.parse(sessionStorage.getItem("myLibrary")));
   e.target.reset();
 });
 
-createCards(myLibrary);
+createCards(JSON.parse(sessionStorage.getItem("myLibrary")));
