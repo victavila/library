@@ -35,7 +35,7 @@ function createCard(obj, id) {
 
   titleHeader.textContent = obj.title;
   authorParagraph.textContent = obj.author;
-  pagesParagraph.textContent = obj.pages;
+  pagesParagraph.textContent = `${obj.pages} pages`;
   readButton.textContent = obj.read;
   deleteButton.textContent = "Delete";
 
