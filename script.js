@@ -11,15 +11,17 @@ const formRead = myForm.elements["read"];
 
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 
-function addBookToLibrary(obj) {
-  myLibrary.push(obj);
+  addBookToLibrary() {
+    myLibrary.push(this);
+  }
 }
 
 function createCard(obj, id) {
@@ -102,7 +104,7 @@ myForm.addEventListener("submit", (e) => {
     formPages.value,
     formRead.value
   );
-  addBookToLibrary(book);
+  book.addBookToLibrary();
   removeAllChildNodes(main);
   createCards();
   updateStorage();
