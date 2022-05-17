@@ -123,3 +123,27 @@ closeButton.addEventListener("click", () => {
 
 setStorage();
 createCards();
+
+//Form validation
+
+formTitle.addEventListener("input", () => {
+  formTitle.setCustomValidity("");
+  formTitle.checkValidity();
+});
+
+formTitle.addEventListener("invalid", () => {
+  if (formTitle.value === "") {
+    formTitle.setCustomValidity("Enter book title");
+  }
+});
+
+formAuthor.addEventListener("input", () => {
+  formAuthor.setCustomValidity("");
+  formAuthor.checkValidity();
+});
+
+formAuthor.addEventListener("invalid", () => {
+  if (formAuthor.value === "") {
+    formAuthor.setCustomValidity("Enter author's name");
+  }
+});
